@@ -1,3 +1,7 @@
+=======
+microbe
+=======
+
 Microbe - Quick but reliable micro-benchmarking
 ------------------------------------------------
 
@@ -66,4 +70,3 @@ Benchmark { bench =>
 = .sbtrc
 
 Add this to your .sbtrc file so you can create a Microbe benchmark in any sbt session:
-TODO
