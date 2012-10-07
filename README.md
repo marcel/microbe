@@ -1,9 +1,5 @@
-=======
-microbe
-=======
-
-Microbe - Quick but reliable micro-benchmarking
-------------------------------------------------
+Microbe - Easy but "meaningful" micro-benchmarking
+==================================================
 
 Writing micro-benchmarks on the JVM is notoriously tricky. HotSpot
 optimizations on naively written benchmarks may mislead you into forming
@@ -35,38 +31,44 @@ http://www.ibm.com/developerworks/java/library/j-jtp12214/
     compilation.
 ]
 
-= Configuration Defaults
+Configuration Defaults
+----------------------
+
 Each section of code to benchmark will be executed for 30 seconds, with 4 warm up runs.
 
-= The simplest benchmark
-Benchmark { codeToBenchmark }
+The simplest benchmark
+----------------------
+
+  Benchmark { codeToBenchmark }
 
 = The most sophisticated benchmark
 
-Benchmark { bench =>
-  bench.name             = "Sequence linear scans"
-  bench.iterations       = Seq(1000, 10000, 10000)
-  bench.warmUps          = 4
-  bench.report           = new CampfireReporter
-  bench.printDiagnostics = true
-  bench.silenceWarnings  = true // default is false
-  bench.quick = true // This prints a warning to STDERR
-  bench.warmUps = 0 // This prints a warning to STDERR w/ a recommendation if warmUps is less than 3
-  bench.duration = 1000 // This prints a warning to STDERR w/ a recommendation if it's less than 10 seconds
+  Benchmark { bench =>
+    bench.name             = "Sequence linear scans"
+    bench.iterations       = Seq(1000, 10000, 10000)
+    bench.warmUps          = 4
+    bench.report           = new CampfireReporter
+    bench.printDiagnostics = true
+    bench.silenceWarnings  = true // default is false
+    bench.quick = true // This prints a warning to STDERR
+    bench.warmUps = 0 // This prints a warning to STDERR w/ a recommendation if warmUps is less than 3
+    bench.duration = 1000 // This prints a warning to STDERR w/ a recommendation if it's less than 10 seconds
 
-  bench("one") {
-    println("ran 1")
+    bench("one") {
+      println("ran 1")
+    }
+
+    bench("two") {
+      println("ran 2")
+    }
   }
 
-  bench("two") {
-    println("ran 2")
-  }
-}
-
-= From Java
+From Java
+---------
 
 // Code example: new SummarizedReport(new Benchmark
 
-= .sbtrc
+.sbtrc
+------
 
 Add this to your .sbtrc file so you can create a Microbe benchmark in any sbt session:
